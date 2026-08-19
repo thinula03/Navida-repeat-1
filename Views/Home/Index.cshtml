@@ -1,0 +1,162 @@
+@model HomeViewModel
+
+@{
+    ViewData["Title"] = "Project Approval System";
+}
+
+<section class="hero">
+    <div class="shell hero__grid">
+        <div>
+            <p class="eyebrow">Academic Research Governance Platform</p>
+            <h1>Welcome to the Project Approval System (PAS)!</h1>
+            <p class="hero__copy">A polished workflow for matching student research proposals with qualified academic supervisors, backed by searchable supervisor data, identity verification, geospatial context, and robust server-side validation.</p>
+            <div class="metric-strip" aria-label="System summary">
+                <div>
+                    <strong>@Model.ResultCount</strong>
+                    <span>Visible supervisors</span>
+                </div>
+                <div>
+                    <strong>SQLite</strong>
+                    <span>Seeded persistence</span>
+                </div>
+                <div>
+                    <strong>MVC</strong>
+                    <span>Razor architecture</span>
+                </div>
+            </div>
+        </div>
+        <partial name="_IdentityPanel" model="Model.Identity" />
+    </div>
+</section>
+
+<section id="map" class="band">
+    <div class="shell section-grid">
+        <div>
+            <p class="eyebrow">Academic Department Office Map</p>
+            <h2>Geospatial Display</h2>
+            <p class="body-copy">The map is centered on the academic department office zone, with a live-rendered coordinate readout for the simulated student researcher.</p>
+            <dl class="coordinates">
+                <div>
+                    <dt>Department center</dt>
+                    <dd>@Model.DepartmentLatitude.ToString("F6"), @Model.DepartmentLongitude.ToString("F6")</dd>
+                </div>
+                <div>
+                    <dt>Student researcher</dt>
+                    <dd id="researcher-coordinates" data-lat="@Model.ResearcherLatitude" data-lng="@Model.ResearcherLongitude">
+                        @Model.ResearcherLatitude.ToString("F6"), @Model.ResearcherLongitude.ToString("F6")
+                    </dd>
+                </div>
+            </dl>
+        </div>
+        <div class="map-frame" role="img" aria-label="Simplified office map centered on the academic department">
+            <div class="map-grid"></div>
+            <div class="map-road map-road--horizontal"></div>
+            <div class="map-road map-road--vertical"></div>
+            <div class="map-building map-building--main">Computing Block</div>
+            <div class="map-building map-building--lab">Research Lab</div>
+            <div class="map-building map-building--hub">Innovation Hub</div>
+            <div class="map-marker map-marker--department" title="Department center"></div>
+            <div class="map-marker map-marker--student" title="Student researcher"></div>
+        </div>
+    </div>
+</section>
+
+<section id="supervisors" class="band band--soft">
+    <div class="shell">
+        <div class="section-header">
+            <div>
+            <p class="eyebrow">Operational Directory</p>
+            <h2>Supervisor Directory</h2>
+            </div>
+            <form class="search" asp-controller="Home" asp-action="Index" method="get">
+                <input type="search" name="searchTerm" value="@Model.SearchTerm" placeholder="Search by name or office" aria-label="Search supervisors by name or office location" />
+                <button type="submit">Search</button>
+                <a asp-controller="Home" asp-action="Index">Reset</a>
+            </form>
+        </div>
+
+        @if (Model.Supervisors.Count == 0)
+        {
+            <p class="empty-state">No supervisors matched your search. Try another name or office location.</p>
+        }
+        else
+        {
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Office Location</th>
+                            <th>Contact</th>
+                            <th>Latitude</th>
+                            <th>Longitude</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var supervisor in Model.Supervisors)
+                    {
+                        <tr>
+                            <td>@supervisor.Name</td>
+                            <td>@supervisor.OfficeLocation</td>
+                            <td>@supervisor.ContactNumber</td>
+                            <td>@supervisor.Latitude.ToString("F6")</td>
+                            <td>@supervisor.Longitude.ToString("F6")</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</section>
+
+<section id="proposal" class="band">
+    <div class="shell form-layout">
+        <div>
+            <p class="eyebrow">Regex Validation</p>
+            <h2>Submit Proposal</h2>
+            <p class="body-copy">The form validates student names and email addresses on the server using regular expressions and displays friendly feedback.</p>
+            <partial name="_IdentityPanel" model="Model.Identity" />
+        </div>
+        <form class="proposal-form" asp-controller="Home" asp-action="SubmitProposal" method="post" novalidate>
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="SearchTerm" />
+
+            @if (!string.IsNullOrWhiteSpace(Model.SubmissionMessage))
+            {
+                <div class="notice @(ViewData.ModelState.IsValid ? "notice--success" : "notice--error")">@Model.SubmissionMessage</div>
+            }
+
+            <label asp-for="Proposal.StudentName"></label>
+            <input asp-for="Proposal.StudentName" />
+            <span asp-validation-for="Proposal.StudentName" class="field-error"></span>
+
+            <label asp-for="Proposal.Email"></label>
+            <input asp-for="Proposal.Email" />
+            <span asp-validation-for="Proposal.Email" class="field-error"></span>
+
+            <label asp-for="Proposal.ProjectAbstract"></label>
+            <textarea asp-for="Proposal.ProjectAbstract" rows="6"></textarea>
+            <span asp-validation-for="Proposal.ProjectAbstract" class="field-error"></span>
+
+            <button type="submit">Submit Proposal</button>
+        </form>
+    </div>
+</section>
+
+<section id="qa" class="band band--soft">
+    <div class="shell qa-grid">
+        <div>
+            <p class="eyebrow">Testing Checklist</p>
+            <h2>Evidence Targets</h2>
+        </div>
+        <ul class="qa-list">
+            <li>Client shows the PAS welcome message.</li>
+            <li>Server console logs full name, student ID, and Colombo, Sri Lanka for each request.</li>
+            <li>Map panel displays centered department location and researcher coordinates.</li>
+            <li>Supervisor data renders from the MVC controller and SQLite database seed.</li>
+            <li>Search returns matching records and shows an empty state for unsuccessful searches.</li>
+            <li>Proposal form shows regex validation errors and a success message for valid input.</li>
+        </ul>
+    </div>
+</section>

@@ -1,0 +1,19 @@
+@model StudentIdentity
+
+<aside class="identity-panel verification-card" aria-label="Student identity verification">
+    <h2>Identity Verification</h2>
+    <dl>
+        <div>
+            <dt>Full Name</dt>
+            <dd>@Model.FullName</dd>
+        </div>
+        <div>
+            <dt>Student ID</dt>
+            <dd>@Model.StudentId</dd>
+        </div>
+        <div>
+            <dt>Current Live Location</dt>
+            <dd>@Model.LiveLocation</dd>
+        </div>
+    </dl>
+</aside>
