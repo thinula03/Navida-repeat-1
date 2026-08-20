@@ -11,14 +11,22 @@
         <div class="shell topbar__inner">
             <a class="brand" asp-controller="Home" asp-action="Index">
                 <span class="brand__mark">PAS</span>
-                <span class="brand__text">Project Approval System</span>
+                <span class="brand__text">
+                    <strong>Project Approval System</strong>
+                    <small>Research governance suite</small>
+                </span>
             </a>
             <nav aria-label="Primary navigation">
                 <a href="#map">Map</a>
+                <a href="#dashboard">Dashboard</a>
                 <a href="#supervisors">Supervisors</a>
                 <a href="#proposal">Proposal</a>
                 <a href="#qa">QA Evidence</a>
             </nav>
+            <div class="topbar__status" aria-label="System status">
+                <span></span>
+                Production-style QA Build
+            </div>
         </div>
     </header>
 

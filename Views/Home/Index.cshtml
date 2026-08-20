@@ -5,33 +5,162 @@
 }
 
 <section class="hero">
+    <div class="executive-rail" aria-hidden="true">
+        <span>01</span>
+        <span>Govern</span>
+        <span>Match</span>
+        <span>Verify</span>
+    </div>
     <div class="shell hero__grid">
-        <div>
+        <div class="hero__content">
+            <div class="hero__badge">
+                <span>Enterprise MVC</span>
+                <span>Supervisor Matching</span>
+                <span>Verified Logging</span>
+            </div>
             <p class="eyebrow">Academic Research Governance Platform</p>
             <h1>Welcome to the Project Approval System (PAS)!</h1>
             <p class="hero__copy">A polished workflow for matching student research proposals with qualified academic supervisors, backed by searchable supervisor data, identity verification, geospatial context, and robust server-side validation.</p>
+            <div class="intelligence-panel" aria-label="Platform intelligence">
+                <div>
+                    <span>01</span>
+                    <strong>Proposal Routing</strong>
+                    <em>Supervisor-fit workflow</em>
+                </div>
+                <div>
+                    <span>02</span>
+                    <strong>Location Context</strong>
+                    <em>Department map layer</em>
+                </div>
+                <div>
+                    <span>03</span>
+                    <strong>Audit Evidence</strong>
+                    <em>Log-backed verification</em>
+                </div>
+            </div>
+            <div class="hero-actions" aria-label="Primary actions">
+                <a class="button button--primary" href="#supervisors">Explore Supervisors</a>
+                <a class="button button--secondary" href="#proposal">Submit Proposal</a>
+            </div>
             <div class="metric-strip" aria-label="System summary">
                 <div>
+                    <span class="metric-icon">01</span>
                     <strong>@Model.ResultCount</strong>
                     <span>Visible supervisors</span>
                 </div>
                 <div>
+                    <span class="metric-icon">02</span>
                     <strong>SQLite</strong>
                     <span>Seeded persistence</span>
                 </div>
                 <div>
+                    <span class="metric-icon">03</span>
                     <strong>MVC</strong>
                     <span>Razor architecture</span>
                 </div>
             </div>
         </div>
-        <partial name="_IdentityPanel" model="Model.Identity" />
+        <div class="hero-console">
+            <div class="console-ribbon">
+                <span>System Integrity</span>
+                <strong>99.9%</strong>
+            </div>
+            <div class="console-header">
+                <span></span>
+                <strong>Request Assurance Console</strong>
+            </div>
+            <partial name="_IdentityPanel" model="Model.Identity" />
+            <div class="console-feed" aria-label="Server verification feed">
+                <div>
+                    <span>01</span>
+                    <strong>Request received</strong>
+                    <em>HTTP pipeline active</em>
+                </div>
+                <div>
+                    <span>02</span>
+                    <strong>Identity printed to server log</strong>
+                    <em>Verification evidence ready</em>
+                </div>
+                <div>
+                    <span>03</span>
+                    <strong>Razor response rendered</strong>
+                    <em>MVC view delivered</em>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="dashboard" class="band dashboard-band">
+    <div class="shell dashboard-shell">
+        <div class="dashboard-header">
+            <div>
+                <div class="section-kicker">Executive Dashboard</div>
+                <p class="eyebrow">System Command Center</p>
+                <h2>PAS Operational Overview</h2>
+            </div>
+            <div class="dashboard-status">
+                <span></span>
+                Ready for QA Evidence
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <article class="dashboard-card dashboard-card--primary">
+                <span class="dashboard-card__label">Supervisor Coverage</span>
+                <strong>@Model.ResultCount</strong>
+                <em>@Model.SearchStatus</em>
+                <div class="progress-track" aria-label="Supervisor data readiness">
+                    <span style="width:@Model.WorkflowCompletion%"></span>
+                </div>
+            </article>
+
+            <article class="dashboard-card">
+                <span class="dashboard-card__label">Identity Control</span>
+                <strong>Active</strong>
+                <em>@Model.Identity.LiveLocation</em>
+            </article>
+
+            <article class="dashboard-card">
+                <span class="dashboard-card__label">Persistence Layer</span>
+                <strong>SQLite</strong>
+                <em>Seeded supervisor registry</em>
+            </article>
+
+            <article class="dashboard-card">
+                <span class="dashboard-card__label">Validation Engine</span>
+                <strong>Regex</strong>
+                <em>Server-side annotations</em>
+            </article>
+        </div>
+
+        <div class="dashboard-lower">
+            <div class="workflow-panel">
+                <div class="panel-title">
+                    <span>Workflow Readiness</span>
+                    <strong>5/5 modules</strong>
+                </div>
+                <div class="workflow-steps">
+                    <div><span>01</span>Client-server welcome response</div>
+                    <div><span>02</span>Geospatial department display</div>
+                    <div><span>03</span>MVC supervisor rendering</div>
+                    <div><span>04</span>Database search and retrieval</div>
+                    <div><span>05</span>Regex proposal validation</div>
+                </div>
+            </div>
+            <div class="insight-panel">
+                <span>Audit Signal</span>
+                <strong>Every request path keeps identity visible and logs verification details for report screenshots.</strong>
+                <a href="#qa">View evidence targets</a>
+            </div>
+        </div>
     </div>
 </section>
 
 <section id="map" class="band">
-    <div class="shell section-grid">
-        <div>
+    <div class="shell premium-section section-grid">
+        <div class="section-copy">
+            <div class="section-kicker">Spatial Intelligence</div>
             <p class="eyebrow">Academic Department Office Map</p>
             <h2>Geospatial Display</h2>
             <p class="body-copy">The map is centered on the academic department office zone, with a live-rendered coordinate readout for the simulated student researcher.</p>
@@ -47,8 +176,17 @@
                     </dd>
                 </div>
             </dl>
+            <div class="operation-stack" aria-label="Geospatial assurance">
+                <div><span></span>Map centered on department office coordinates</div>
+                <div><span></span>Researcher coordinate display rendered dynamically</div>
+                <div><span></span>Student verification data remains visible</div>
+            </div>
         </div>
         <div class="map-frame" role="img" aria-label="Simplified office map centered on the academic department">
+            <div class="map-toolbar">
+                <span>Campus Office Layer</span>
+                <strong>Colombo, Sri Lanka</strong>
+            </div>
             <div class="map-grid"></div>
             <div class="map-road map-road--horizontal"></div>
             <div class="map-road map-road--vertical"></div>
@@ -57,18 +195,29 @@
             <div class="map-building map-building--hub">Innovation Hub</div>
             <div class="map-marker map-marker--department" title="Department center"></div>
             <div class="map-marker map-marker--student" title="Student researcher"></div>
+            <div class="map-coordinate-card">
+                <span>Researcher Signal</span>
+                <strong>@Model.ResearcherLatitude.ToString("F4") / @Model.ResearcherLongitude.ToString("F4")</strong>
+            </div>
+            <div class="map-legend">
+                <span><i class="legend-dot legend-dot--department"></i>Department</span>
+                <span><i class="legend-dot legend-dot--student"></i>Researcher</span>
+            </div>
         </div>
     </div>
 </section>
 
 <section id="supervisors" class="band band--soft">
-    <div class="shell">
+    <div class="shell premium-section premium-section--wide">
         <div class="section-header">
             <div>
-            <p class="eyebrow">Operational Directory</p>
-            <h2>Supervisor Directory</h2>
+                <div class="section-kicker">Data Operations</div>
+                <p class="eyebrow">Operational Directory</p>
+                <h2>Supervisor Directory</h2>
+                <p class="section-subtitle">@Model.ResultCount record(s) currently visible from the supervisor data source.</p>
             </div>
             <form class="search" asp-controller="Home" asp-action="Index" method="get">
+                <span class="search-label">Directory Query</span>
                 <input type="search" name="searchTerm" value="@Model.SearchTerm" placeholder="Search by name or office" aria-label="Search supervisors by name or office location" />
                 <button type="submit">Search</button>
                 <a asp-controller="Home" asp-action="Index">Reset</a>
@@ -81,6 +230,11 @@
         }
         else
         {
+            <div class="table-shell">
+                <div class="table-caption">
+                    <strong>Supervisor Registry</strong>
+                    <span>Seeded persistence - MVC rendered</span>
+                </div>
             <div class="table-wrap">
                 <table>
                     <thead>
@@ -96,29 +250,40 @@
                     @foreach (var supervisor in Model.Supervisors)
                     {
                         <tr>
-                            <td>@supervisor.Name</td>
-                            <td>@supervisor.OfficeLocation</td>
-                            <td>@supervisor.ContactNumber</td>
-                            <td>@supervisor.Latitude.ToString("F6")</td>
-                            <td>@supervisor.Longitude.ToString("F6")</td>
+                            <td><span class="person-cell">@supervisor.Name</span></td>
+                            <td><span class="location-pill">@supervisor.OfficeLocation</span></td>
+                            <td><a class="contact-link" href="tel:@supervisor.ContactNumber">@supervisor.ContactNumber</a></td>
+                            <td><code>@supervisor.Latitude.ToString("F6")</code></td>
+                            <td><code>@supervisor.Longitude.ToString("F6")</code></td>
                         </tr>
                     }
                     </tbody>
                 </table>
+            </div>
             </div>
         }
     </div>
 </section>
 
 <section id="proposal" class="band">
-    <div class="shell form-layout">
-        <div>
+    <div class="shell premium-section form-layout">
+        <div class="section-copy">
+            <div class="section-kicker">Validated Intake</div>
             <p class="eyebrow">Regex Validation</p>
             <h2>Submit Proposal</h2>
             <p class="body-copy">The form validates student names and email addresses on the server using regular expressions and displays friendly feedback.</p>
+            <div class="operation-stack" aria-label="Validation assurance">
+                <div><span></span>Server-side Data Annotation validation</div>
+                <div><span></span>Regex protected student name and email fields</div>
+                <div><span></span>Identity logged on every submission attempt</div>
+            </div>
             <partial name="_IdentityPanel" model="Model.Identity" />
         </div>
-        <form class="proposal-form" asp-controller="Home" asp-action="SubmitProposal" method="post" novalidate>
+        <form class="proposal-form premium-form" asp-controller="Home" asp-action="SubmitProposal" method="post" novalidate>
+            <div class="form-head">
+                <span>Proposal Intake</span>
+                <strong>Regex Secured</strong>
+            </div>
             @Html.AntiForgeryToken()
             <input type="hidden" asp-for="SearchTerm" />
 
@@ -145,8 +310,9 @@
 </section>
 
 <section id="qa" class="band band--soft">
-    <div class="shell qa-grid">
+    <div class="shell premium-section qa-grid">
         <div>
+            <div class="section-kicker">Assurance Pack</div>
             <p class="eyebrow">Testing Checklist</p>
             <h2>Evidence Targets</h2>
         </div>

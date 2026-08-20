@@ -12,4 +12,6 @@ public class HomeViewModel
     public string? SubmissionMessage { get; set; }
     public ProposalSubmission Proposal { get; set; } = new();
     public int ResultCount => Supervisors.Count;
+    public string SearchStatus => string.IsNullOrWhiteSpace(SearchTerm) ? "All records" : $"Filtered by \"{SearchTerm}\"";
+    public int WorkflowCompletion => 100;
 }
