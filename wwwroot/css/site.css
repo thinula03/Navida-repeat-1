@@ -1508,6 +1508,192 @@ code {
     border-top: 1px solid var(--line);
 }
 
+.admin-hero {
+    padding: 82px 0 54px;
+    background:
+        linear-gradient(135deg, rgba(15,23,42,.94), rgba(19,78,74,.86)),
+        radial-gradient(circle at 80% 12%, rgba(196,154,74,.22), transparent 34%);
+    border-bottom: 1px solid rgba(148,163,184,.28);
+}
+
+.admin-hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
+    gap: 42px;
+    align-items: start;
+}
+
+.admin-hero h1 {
+    max-width: 880px;
+    color: #fff;
+    font-size: clamp(2.4rem, 4.8vw, 4.8rem);
+}
+
+.admin-hero .hero__copy {
+    color: #cbd5e1;
+}
+
+.admin-hero .section-kicker {
+    border-color: rgba(94,234,212,.24);
+    background: rgba(20,184,166,.14);
+    color: #99f6e4;
+}
+
+.admin-shell {
+    display: grid;
+    gap: 18px;
+}
+
+.admin-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.admin-metrics article,
+.admin-panel {
+    border: 1px solid rgba(223,229,238,.92);
+    border-radius: 16px;
+    background: rgba(255,255,255,.86);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(18px);
+}
+
+.admin-metrics article {
+    min-height: 138px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-metrics article::after {
+    content: "";
+    position: absolute;
+    right: -34px;
+    bottom: -44px;
+    width: 116px;
+    height: 116px;
+    border-radius: 999px;
+    background: rgba(11,107,98,.08);
+}
+
+.admin-metrics span,
+.admin-metrics strong,
+.admin-metrics em {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.admin-metrics span {
+    color: var(--muted);
+    font-size: .78rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.admin-metrics strong {
+    margin-top: 14px;
+    color: #0f172a;
+    font-size: clamp(1.65rem, 3vw, 2.6rem);
+    line-height: 1;
+}
+
+.admin-metrics em {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: .86rem;
+    font-style: normal;
+    font-weight: 780;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+    gap: 18px;
+}
+
+.admin-panel {
+    overflow: hidden;
+}
+
+.admin-empty {
+    display: grid;
+    gap: 8px;
+    padding: 24px;
+    color: var(--muted);
+}
+
+.admin-empty strong {
+    color: #0f172a;
+}
+
+.proposal-review-list {
+    display: grid;
+    gap: 12px;
+    padding: 16px;
+}
+
+.proposal-review-list article {
+    display: grid;
+    gap: 10px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.proposal-review-list article div {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.proposal-review-list strong {
+    color: #0f172a;
+}
+
+.proposal-review-list span,
+.proposal-review-list time,
+.proposal-review-list p {
+    color: var(--muted);
+}
+
+.proposal-review-list p {
+    margin: 0;
+}
+
+.proposal-review-list time {
+    font-size: .82rem;
+    font-weight: 800;
+}
+
+.evidence-panel {
+    display: grid;
+    grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr);
+    gap: 22px;
+    padding: 24px;
+}
+
+.evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.evidence-grid span {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0 14px;
+    background: #f8fafc;
+    color: #334155;
+    font-weight: 840;
+}
+
 @media (max-width: 940px) {
     .executive-rail {
         display: none;
@@ -1534,7 +1720,10 @@ code {
     .hero__grid,
     .section-grid,
     .form-layout,
-    .qa-grid {
+    .qa-grid,
+    .admin-hero__grid,
+    .admin-grid,
+    .evidence-panel {
         grid-template-columns: 1fr;
     }
 
@@ -1562,7 +1751,9 @@ code {
     }
 
     .dashboard-grid,
-    .workflow-steps {
+    .workflow-steps,
+    .admin-metrics,
+    .evidence-grid {
         grid-template-columns: 1fr;
     }
 }

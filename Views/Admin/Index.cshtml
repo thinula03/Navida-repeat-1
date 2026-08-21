@@ -1,0 +1,119 @@
+@model AdminDashboardViewModel
+
+@{
+    ViewData["Title"] = "Admin Command Center";
+}
+
+<section class="admin-hero">
+    <div class="shell admin-hero__grid">
+        <div>
+            <div class="section-kicker">Admin Command Center</div>
+            <p class="eyebrow">Project Approval System</p>
+            <h1>Operations dashboard for supervisor matching, proposal intake, and QA evidence.</h1>
+            <p class="hero__copy">A premium administration surface for reviewing seeded supervisor data, monitoring proposal submissions, and capturing strong final-report screenshots.</p>
+        </div>
+        <partial name="_IdentityPanel" model="Model.Identity" />
+    </div>
+</section>
+
+<section class="band">
+    <div class="shell admin-shell">
+        <div class="admin-metrics">
+            <article>
+                <span>Supervisors</span>
+                <strong>@Model.SupervisorCount</strong>
+                <em>Seeded records</em>
+            </article>
+            <article>
+                <span>Proposals</span>
+                <strong>@Model.ProposalCount</strong>
+                <em>Stored submissions</em>
+            </article>
+            <article>
+                <span>Coverage</span>
+                <strong>@Model.ModuleCoverage/5</strong>
+                <em>Assessment modules</em>
+            </article>
+            <article>
+                <span>Evidence</span>
+                <strong>Ready</strong>
+                <em>Identity visible and logged</em>
+            </article>
+        </div>
+
+        <div class="admin-grid">
+            <section class="admin-panel">
+                <div class="table-caption">
+                    <strong>Supervisor Control</strong>
+                    <span>Database-backed registry</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Office</th>
+                                <th>Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var supervisor in Model.Supervisors)
+                        {
+                            <tr>
+                                <td><span class="person-cell">@supervisor.Name</span></td>
+                                <td><span class="location-pill">@supervisor.OfficeLocation</span></td>
+                                <td><a class="contact-link" href="tel:@supervisor.ContactNumber">@supervisor.ContactNumber</a></td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="admin-panel">
+                <div class="table-caption">
+                    <strong>Proposal Intake Review</strong>
+                    <span>Latest valid submissions</span>
+                </div>
+                @if (Model.ProposalRecords.Count == 0)
+                {
+                    <div class="admin-empty">
+                        <strong>No proposal submissions yet.</strong>
+                        <span>Submit a valid proposal from the main page, then return here for review evidence.</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="proposal-review-list">
+                    @foreach (var proposal in Model.ProposalRecords)
+                    {
+                        <article>
+                            <div>
+                                <strong>@proposal.StudentName</strong>
+                                <span>@proposal.Email</span>
+                            </div>
+                            <p>@proposal.ProjectAbstract</p>
+                            <time datetime="@proposal.SubmittedAtUtc.ToString("O")">@proposal.SubmittedAtUtc.ToLocalTime().ToString("yyyy-MM-dd HH:mm")</time>
+                        </article>
+                    }
+                    </div>
+                }
+            </section>
+        </div>
+
+        <section class="admin-panel evidence-panel">
+            <div>
+                <div class="section-kicker">Final Submission Evidence</div>
+                <h2>Screenshot Checklist</h2>
+            </div>
+            <div class="evidence-grid">
+                <span>Home welcome with identity panel</span>
+                <span>Server console showing identity log</span>
+                <span>Map with researcher coordinates</span>
+                <span>Supervisor database records and search</span>
+                <span>Invalid regex validation errors</span>
+                <span>Valid proposal success and admin review</span>
+            </div>
+        </section>
+    </div>
+</section>

@@ -22,6 +22,15 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.EnsureCreated();
+    db.Database.ExecuteSqlRaw("""
+        CREATE TABLE IF NOT EXISTS "ProposalRecords" (
+            "Id" INTEGER NOT NULL CONSTRAINT "PK_ProposalRecords" PRIMARY KEY AUTOINCREMENT,
+            "StudentName" TEXT NOT NULL,
+            "Email" TEXT NOT NULL,
+            "ProjectAbstract" TEXT NOT NULL,
+            "SubmittedAtUtc" TEXT NOT NULL
+        );
+        """);
     DatabaseSeeder.Seed(db);
 }
 

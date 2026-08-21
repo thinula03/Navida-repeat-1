@@ -10,4 +10,5 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<Supervisor> Supervisors => Set<Supervisor>();
+    public DbSet<ProposalRecord> ProposalRecords => Set<ProposalRecord>();
 }

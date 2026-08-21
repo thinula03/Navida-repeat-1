@@ -14,6 +14,7 @@ Premium ASP.NET Core MVC implementation for the PUSL2020 referral CILE brief.
 - QA checklist section for the screenshot evidence required by the report.
 - Responsive, executive-grade interface designed to look like an internal platform rather than a basic student demo.
 - Clean project structure with models, services, persistence, controllers, Razor views, and static assets separated by responsibility.
+- Premium admin panel at `/Admin` for supervisor oversight, proposal review, and final-report evidence.
 
 ## Before running
 
@@ -40,6 +41,12 @@ https://localhost:7224
 ```
 
 The SQLite database file `pas-supervisors.db` is created automatically on first launch and seeded with mock supervisor records.
+
+Admin panel:
+
+```text
+https://localhost:7224/Admin
+```
 
 ## Verification
 

@@ -49,6 +49,15 @@ public class HomeController : Controller
         }
 
         ModelState.Clear();
+        _context.ProposalRecords.Add(new ProposalRecord
+        {
+            StudentName = proposal.StudentName.Trim(),
+            Email = proposal.Email.Trim(),
+            ProjectAbstract = proposal.ProjectAbstract.Trim(),
+            SubmittedAtUtc = DateTime.UtcNow
+        });
+        await _context.SaveChangesAsync();
+
         viewModel.Proposal = new ProposalSubmission();
         viewModel.SubmissionMessage = "Thank you for your submission. Your proposal has been received.";
         return View("Index", viewModel);

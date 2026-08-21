@@ -1,6 +1,7 @@
 bin/
 obj/
 .nuget/
+tmp/
 *.db
 *.db-shm
 *.db-wal
